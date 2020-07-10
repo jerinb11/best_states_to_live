@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background-image: url("{{url_for('static',filename='./images/background.jpg')}}");
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- Chart.js Scripts and reading in CSV -->
+  <script type="text/javascript" src="Chart.js"></script>
+  <script type="text/javascript" src="xlsx.full.min.js"></script>
+  <script type="text/javascript" src="chartjs-plugin-datasource.js"></script>
+
+  <canvas id="myChart"></canvas>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Style Sheet tag -->
+  <link rel="stylesheet" href="{{url_for('static',filename='./css/style.css')}}">
+
+  <title>Best States to Live: Chart</title>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark static-top mb-5 shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">UA Data Analytics Bootcamp: Project 2</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/">Best States to Live
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/chart">Best States to Live: Chart
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/map">Best States to Live: Map
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--Layout-->
+  <div class="container">
+    <p style="font-family:georgia,garamond,serif;font-size:38px;font-style:normal; color: white;"><b>Best
+        States to Live</p></b>
+    <!--This example demonstrates a 50%/50% split on small, medium and large devices. On extra small devices, it will stack (100% width). -->
+    <div class="row justify-content-around">
+      <div class="col-12" style="background-color:white;">
+        <p
+          style="font-family:georgia,garamond,serif;font-size:34px;font-style:normal;padding: 5px; margin: 10px 10px 0px 0px;">
+          <b>Data</p>
+        <hr color="black"><br>
+        </b>
+
+        <!-- Chart -->
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <script>
+
+var myChart = document.getElementById('myChart').getContext('2d');
+
+        // global options
+        // Chart.defaults.global.defaultFontFamily = 'Lato';
+        // Chart.defaults.global.defaultFontSize = '18';
+        // Chart.defaults.global.defaultFontColor = '#000';
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var chart = new Chart(ctx, {
+          type: 'bar',
+          plugins: [ChartDataSource],
+          options: {
+            daatasource: {
+              url: 'sample-dataset.xlsx'
+            }
+          }
+        });
+
+        var costChart = new Chart(myChart, {
+          type: 'horizontalBar', //can turn into bar, horizontalBar, pie, etc. type of chart
+          data: {
+            labels: [],
+            datasets: [{
+              label: 'Ranked out of 50',
+              data: [
+
+              ],
+              backgroundColor: [
+                'rgba(82,82,82)',
+                'rgba(224,236,244)',
+                'rgba(191,211,230)',
+                'rgba(158,188,218)',
+                'rgba(140,150,198)',
+                'rgba(140,107,177)',
+                'rgba(136,65,157)',
+                'rgba(110,1,107)',
+              ],
+              borderWidth: 1,
+              borderColor: '#000',
+              hoverBorderWidth: 3,
+              hoverBorderColor: '#000'
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Best States to Live',
+              fontSize: 25
+            },
+            legend: {
+              // display:false,
+              position: 'right',
+              labels: {
+                fontColor: '#000'
+              }
+            },
+            layout: {
+              padding: {
+                left: 10,
+                right: 0,
+                bottom: 0,
+                top: 0
+              }
+            }
+          }
+        });
+      </script>
+
+      <br><br>
+    </div>
+
+    <div class="col-12" style="background-color:white;">
+      <p
+        style="font-family:georgia,garamond,serif;font-size:34px;font-style:normal;padding: 5px; margin: 10px 10px 0px 0px;">
+        <b>About Data</p></b>
+      <hr color="black"><br>
+      <div class="row">
+        <div class="column">
+          <a href="https://crime-data-explorer.fr.cloud.gov/explorer/national/united-states/crime"
+            style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">Safety/Crime
+          </a>
+          <p><sup>1</sup>Crime rate is per 100,000 people, by year for property crime incidents submitted by law
+            enforcement agencies in each state</p>
+          <a href="https://www.usnews.com/news/best-states/rankings"
+            style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">US
+            News
+          </a>
+          <p><sup>2</sup>Education is based preschool, K-12 and different levels of higher education.</p>
+          <p><sup>3</sup>Economy tracks unemployment rates, GDP growth, migration into the state, patents, new
+            businesses and more.
+          </p>
+          <p><sup>4</sup>Opportunities measures poverty, housing affordability and equality for women, minorities, and
+            people with disabilities.
+          </p>
+          <a href="https://www.census.gov/library/publications/2019/acs/acsbr18-01.html"
+            style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">Census
+            Income
+          </a>
+          <br>
+          <p><sup>5</sup>Median household income and the Gini index of income inequality</p>
+          <a href="https://www.cnbc.com/2018/07/10/americas-top-states-for-business-2018.html"
+            style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">CNBC
+            Cost of Living</a>
+          <br>
+          <p><sup>6</sup>Cost of Living is housing, food, energy, overall basic items, and wages that go further when
+            the cost of living is low. Education is based preschool, K-12 and different levels of higher education.
+          </p>
+          </p>
+          <p><sup>7</sup>Quality of Life is livability including the quality of health care, the level of
+            health-insurance coverage and overall health of the population, local attractions, parks, and recreation,
+            and environmental quality.</p>
+          <p><sup>8</sup>Workforce based on the education level of their workforce, the numbers of available
+            employees, and net migration of college-educated workers.</p>
+          </p><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <br><br><br>
+
+  <!--Footer-->
+  <style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+  </style>
+  <div class="footer">
+    <p>Copyright © 2020 Jerin Black</p>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!-- home page -->
+<!-- template -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background-image: url("{{url_for('static',filename='./images/background.jpg')}}");
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>Best States to Live</title>
+
+  <!-- Bring in our bootstrap stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Style Sheet tag -->
+  <link rel="stylesheet" href="{{url_for('static',filename='./css/style.css')}}">
+
+  <style>
+    html,
+    body,
+    #map {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark static-top mb-5 shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">UA Data Analytics Bootcamp: Project 2</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/">Best States to Live
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/chart">Best States to Live: Chart
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/map">Best States to Live: Map
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--Layout-->
+
+  <div class="container">
+    <p style="font-family:georgia,garamond,serif;font-size:38px;font-style:normal; color: white;"><b>Best
+        States to Live</p></b>
+    <!--This example demonstrates a 50%/50% split on small, medium and large devices. On extra small devices, it will stack (100% width). -->
+    <div class="row justify-content-around">
+      <div class="col-7" style="background-color:white;">
+        <p
+          style="font-family:georgia,garamond,serif;font-size:34px;font-style:normal;padding: 5px; margin: 10px 10px 0px 0px;">
+          <b>Data</p>
+        <hr color="black"><br>
+        </b>
+
+        <!-- Choropleth Map with Leaflet -->
+        <a class="nav-link" href="http://127.0.0.1:5000/map">Best States to Live: Map</a>
+        <iframe src="http://127.0.0.1:5000/map" title="Best States to Live: Map" height="300px" width="600"></iframe>
+
+        <!-- Chart.js -->
+        <!-- <a class="nav-link" href="http://127.0.0.1:5000/chart">Best States to Live: Chart</a>
+        <iframe src="http://127.0.0.1:5000/chart" title="Best States to Live: Chart" height="300px" width="600"></iframe> -->
+
+
+        <br><br>
+      </div>
+      <div class="col-4" style="background-color:white;">
+        <p
+          style="font-family:georgia,garamond,serif;font-size:34px;font-style:normal;padding: 5px; margin: 10px 10px 0px 0px;">
+          <b>About Data</p></b>
+        <hr color="black"><br>
+        <div class="row">
+          <div class="column">
+            <a href="https://crime-data-explorer.fr.cloud.gov/explorer/national/united-states/crime"
+              style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">Safety/Crime
+            </a>
+            <p><sup>1</sup>Crime rate is per 100,000 people, by year for property crime incidents submitted by law
+              enforcement agencies in each state</p>
+            <a href="https://www.usnews.com/news/best-states/rankings"
+              style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">US
+              News
+            </a>
+            <p><sup>2</sup>Education is based preschool, K-12 and different levels of higher education.</p>
+            <p><sup>3</sup>Economy tracks unemployment rates, GDP growth, migration into the state, patents, new
+              businesses and more.
+            </p>
+            <p><sup>4</sup>Opportunities measures poverty, housing affordability and equality for women, minorities, and
+              people with disabilities.
+            </p>
+            <a href="https://www.census.gov/library/publications/2019/acs/acsbr18-01.html"
+              style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">Census
+              Income
+            </a>
+            <br>
+            <p><sup>5</sup>Median household income and the Gini index of income inequality</p>
+            <a href="https://www.cnbc.com/2018/07/10/americas-top-states-for-business-2018.html"
+              style="font-family:georgia,garamond,serif;font-size:16px;font-style:normal;padding: 5px; margin: 5px 5px 0px 0px;">CNBC
+              Cost of Living</a>
+            <br>
+            <p><sup>6</sup>Cost of Living is housing, food, energy, overall basic items, and wages that go further when
+              the cost of living is low. Education is based preschool, K-12 and different levels of higher education.
+            </p>
+            </p>
+            <p><sup>7</sup>Quality of Life is livability including the quality of health care, the level of
+              health-insurance coverage and overall health of the population, local attractions, parks, and recreation,
+              and environmental quality.</p>
+            <p><sup>8</sup>Workforce based on the education level of their workforce, the numbers of available
+              employees, and net migration of college-educated workers.</p>
+            </p><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br>
+
+  <!--Footer-->
+  <style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+  </style>
+  <div class="footer">
+    <p>Copyright © 2020 Jerin Black</p>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS and Leaflet-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  <!-- D3 JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+  <!-- Custom Script tags -->
+  <script src="{{url_for('static',filename='./js/stateborders.js')}}"></script>
+  <script src="{{url_for('static',filename='./js/logic.js')}}"></script>
+  <script src="{{url_for('static',filename='./js/config.js')}}"></script>
+
+</body>
+
+</html>
