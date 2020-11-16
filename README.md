@@ -3,8 +3,9 @@ READ.ME
 ## Project 2 
 
 ## Objective <br>
-The aim for this project is to find best states to live in based on Cost of Living, Opportunity, Workforce, Economy, Quality of Life, Education, Crime Rate, and Estimated Average Income. I chose these categories because they tend to be the main deciding factors for measuring how well states are performing for their citizens.<br>
-<br> I gathered data from multiple sources such as US News, Crime Data Explorer, U.S. Census, and CNBC for the purpose of being unbiased.  
+The aim of this project was to find the best states to live in based on the Cost of Living, Opportunities, Workforce, Economy, Quality of Life, Education, Crime Rate, and Estimated Average Income. I chose these categories because they tend to be the main deciding factors for measuring how well states/governments are tending to their citizens.
+<br> I gathered data from multiple sources such as US News, Crime Data Explorer, U.S. Census, and CNBC for the purpose of being unbiased.
+
 
 ## Technologies
  • Python <br>
